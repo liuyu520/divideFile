@@ -13,6 +13,7 @@ import com.swing.component.ComponentUtil;
 import com.swing.dialog.DialogUtil;
 import com.swing.dialog.GenericFrame;
 import com.swing.messagebox.GUIUtil23;
+import com.time.util.TimeHWUtil;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -26,6 +27,7 @@ import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class FileDivideApp extends GenericFrame {
@@ -840,6 +842,7 @@ public class FileDivideApp extends GenericFrame {
                                                        long singleSize, String fileName, String targetFolderStr,
                                                        long lastSize) {
         List<DividedFileBean> dividedFiles = new ArrayList<DividedFileBean>();
+        String dateTime = TimeHWUtil.formatDate(new Date(), TimeHWUtil.YYYYMMDD_NO_LINE);
         for (int i = 0; i < quantity; i++) {
             DividedFileBean dividedFile = new DividedFileBean();
             dividedFile.setSequence(i + 1);// start from one
@@ -847,7 +850,7 @@ public class FileDivideApp extends GenericFrame {
             // 第一个字节存放序号
             dividedFile.setStartIndex(1);
             dividedFile.setLength(singleSize);
-            dividedFile.setFileName(fileName + SystemHWUtil.UNDERLINE
+            dividedFile.setFileName(fileName + SystemHWUtil.MIDDLE_LINE + dateTime + SystemHWUtil.UNDERLINE
                     + dividedFile.getSequence() + SystemHWUtil.UNDERLINE
                     + String.valueOf(quantity) + Constant.SUFFIX_DIVIDED);
             File outPutFile = new File(targetFolderStr,
