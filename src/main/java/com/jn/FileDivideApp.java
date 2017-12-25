@@ -823,14 +823,6 @@ public class FileDivideApp extends GenericFrame {
         return true;
     }
 
-    public static String getIndexNoFormattd(int index, int maxLength) {
-        String start = String.valueOf(index);
-        int length = maxLength - start.length();
-        for (int i = 0; i < length; i++) {
-            start = "0" + start;
-        }
-        return start;
-    }
     /***
      * 初始化分割后的文件
      *
@@ -855,7 +847,7 @@ public class FileDivideApp extends GenericFrame {
             dividedFile.setStartIndex(1);
             dividedFile.setLength(singleSize);
             dividedFile.setFileName(fileName + SystemHWUtil.MIDDLE_LINE + dateTime + SystemHWUtil.UNDERLINE
-                    + getIndexNoFormattd(dividedFile.getSequence(), maxLength) + SystemHWUtil.UNDERLINE
+                    +ValueWidget.getIndexNoFormattd(dividedFile.getSequence(), maxLength) + SystemHWUtil.UNDERLINE
                     + String.valueOf(quantity) + Constant.SUFFIX_DIVIDED);
             File outPutFile = new File(targetFolderStr,
                     dividedFile.getFileName());
