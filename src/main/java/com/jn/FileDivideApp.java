@@ -84,6 +84,11 @@ public class FileDivideApp extends GenericFrame {
 
 //		setBounds(100, 100, );
         setLoc(800, 450);
+        try {
+            setIcon("img/divider.png",this.getClass());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
         setContentPane(contentPane);
