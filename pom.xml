@@ -28,20 +28,7 @@
         </dependency>
     </dependencies>
 
-    <distributionManagement>
-        <repository>
-            <id>tdr_mbs_endpoint_release</id>
-            <name>tdr_mbs_endpoint_release</name>
-            <url>http://localhost:8081/nexus/content/repositories/tdr_mbs_endpoint_release/</url>
-        </repository>
 
-
-        <snapshotRepository>
-            <id>tdr_mbs_endpoint_snapshot</id>
-            <name>tdr_mbs_endpoint_snapshot</name>
-            <url>http://localhost:8081/nexus/content/repositories/tdr_mbs_endpoint_snapshot/</url>
-        </snapshotRepository>
-    </distributionManagement>
     <build>
         <plugins>
             <plugin>

@@ -19,7 +19,6 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
-import javax.swing.text.BadLocationException;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -136,12 +135,8 @@ public class FileDivideApp extends GenericFrame {
             @Override
             public void insertUpdate(DocumentEvent e) {
                 // System.out.println("insert");
-                try {
-                    ComponentUtil.assistantTF(sourceTF, e);// Assist path
-                    // complement
-                } catch (BadLocationException e2) {
-                    e2.printStackTrace();
-                }
+                ComponentUtil.assistantTF(sourceTF, e);// Assist path
+                // complement
 
             }
 
@@ -828,6 +823,14 @@ public class FileDivideApp extends GenericFrame {
         return true;
     }
 
+    public static String getIndexNoFormattd(int index, int maxLength) {
+        String start = String.valueOf(index);
+        int length = maxLength - start.length();
+        for (int i = 0; i < length; i++) {
+            start = "0" + start;
+        }
+        return start;
+    }
     /***
      * 初始化分割后的文件
      *
@@ -843,6 +846,7 @@ public class FileDivideApp extends GenericFrame {
                                                        long lastSize) {
         List<DividedFileBean> dividedFiles = new ArrayList<DividedFileBean>();
         String dateTime = TimeHWUtil.formatDate(new Date(), TimeHWUtil.YYYYMMDD_NO_LINE);
+        int maxLength = String.valueOf(quantity).length();
         for (int i = 0; i < quantity; i++) {
             DividedFileBean dividedFile = new DividedFileBean();
             dividedFile.setSequence(i + 1);// start from one
@@ -851,7 +855,7 @@ public class FileDivideApp extends GenericFrame {
             dividedFile.setStartIndex(1);
             dividedFile.setLength(singleSize);
             dividedFile.setFileName(fileName + SystemHWUtil.MIDDLE_LINE + dateTime + SystemHWUtil.UNDERLINE
-                    + dividedFile.getSequence() + SystemHWUtil.UNDERLINE
+                    + getIndexNoFormattd(dividedFile.getSequence(), maxLength) + SystemHWUtil.UNDERLINE
                     + String.valueOf(quantity) + Constant.SUFFIX_DIVIDED);
             File outPutFile = new File(targetFolderStr,
                     dividedFile.getFileName());
